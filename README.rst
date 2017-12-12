@@ -27,6 +27,18 @@ Configuration
 Please edit the *config.py* file to specify the path to the data directory of the
 acquisition: *nicolas2*, *claire5* and *claire6*.
 
+Please update your .bashrc by adding
+
+.. code-block:: bash
+
+    export PYTHONPATH="/path/to/resting_state_sandbox/:$PYTHONPATH"
+
+And then source your .bashrc
+
+.. code-block:: bash
+
+    source ~/.bashrc
+
 
 Instructions
 ------------
