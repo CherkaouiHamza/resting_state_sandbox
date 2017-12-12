@@ -8,11 +8,10 @@ from pypreprocess.nipype_preproc_spm_utils import do_subjects_preproc
 from nilearn import input_data
 from nilearn.decomposition import CanICA
 from nilearn import plotting
-from nilearn.image import iter_img
+from nilearn.image import iter_img, index_img, load_img
 
 # package import
 from resting_state_sandbox.config import root_dir, claire5_data_dir
-from resting_state_sandbox.utils import subsample_nifti
 
 
 #------------------------------------------------------------------------------
@@ -30,8 +29,15 @@ except OSError:
 
 # preprocessing
 
+# preprocessing
+# discard __idx_start__ first scans
+__idx_start__ = 10
 data_filename = os.path.join(dataset_dir, "s005a1001_epi3p4mm.nii")
-subsample_nifti(data_filename, idx_start=10)
+sub_img = index_img(load_img(data_filename), slice(__idx_start__, None))
+new_data_filename = (os.path.splitext(data_filename)[0]
+                     + "_{0}_first_discard.nii".format(__idx_start__))
+sub_img.to_filename(new_data_filename)
+# do the preprocessing
 results = do_subjects_preproc(jobfile, dataset_dir=dataset_dir)[0]
 func_filename = results.func
 
