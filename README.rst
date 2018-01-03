@@ -10,8 +10,9 @@ Hamza Cherkaoui
 Synopsis
 --------
 
-Simple package to offer **ACI** and **seed based** analysis of the resting state
-acquisition done with the PET MR scanner in Service Hospitalier Frederic Joliot.
+Simple package to offer **ACI**, **seed based correlation** and
+**seed based GLM** analysis of the resting state acquisition done with the PET
+MR scanner in Service Hospitalier Frederic Joliot.
 
 
 Dependencies
@@ -24,8 +25,8 @@ Dependencies
 Configuration
 -------------
 
-Please edit the *config.py* file to specify the path to the data directory of the
-acquisition: *nicolas2*, *claire5* and *claire6*.
+Please edit the *config.py* file to specify the path to the data directory  and
+the filename of the 4D fMRI dataof the acquisition: 
 
 Please update your .bashrc by adding
 
@@ -43,17 +44,11 @@ And then source your .bashrc
 Instructions
 ------------
 
-Go to the example directory of your choice:
-
-.. code-block:: bash
-
-    cd resting_state_sandbox/example/nicolas2/
-
 Launch the example:
 
 .. code-block:: bash
 
-    python nicolas2_resting_state.py
+    python resting_state.py
 
 You can then inspect the preprocessing report:
 
