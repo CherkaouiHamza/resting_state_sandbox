@@ -26,7 +26,7 @@ Configuration
 -------------
 
 Please edit the *config.py* file to specify the path to the data directory  and
-the filename of the 4D fMRI dataof the acquisition: 
+the filename of the data:
 
 Please update your .bashrc by adding
 
