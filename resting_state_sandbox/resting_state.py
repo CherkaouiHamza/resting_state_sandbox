@@ -30,9 +30,10 @@ if not os.path.exists(output_dir):
 
 #########################################################################
 # Preprocessing
-func_data_filename = os.path.join(data_dir, func_data_filename)
-sub_img = index_img(load_img(func_data_filename), slice(idx_start, None))
-sub_img.to_filename(os.path.join(data_dir,"func.nii"))
+if False:
+    func_data_filename = os.path.join(data_dir, func_data_filename)
+    sub_img = index_img(load_img(func_data_filename), slice(idx_start, None))
+    sub_img.to_filename(os.path.join(data_dir,"func.nii"))
 
 subject_data = do_subjects_preproc(jobfile, dataset_dir=data_dir)[0]
 fmri_img = load_img(subject_data.func[0])
