@@ -15,9 +15,21 @@ anat_data_filename = "T1.nii"
 #data_dir = "/home/hcherkaoui/DATA/20170727_e00730_REGLAGE05_REGLAGE05/nii"
 #func_data_filename = "s005a1001_epi3p4mm_rest.nii"
 #anat_data_filename = "T1.nii"
-#
+
 ## adapt those three lines:
 ## ID 20171114_e00766_REGLAGE06_REGLAGE06
 #data_dir = "/home/hcherkaoui/DATA/20171114_e00766_REGLAGE06_REGLAGE06/nii"
 #func_data_filename = "s006a1001_epi3p4mm_rest.nii"
+#anat_data_filename = "T1.nii"
+
+## adapt those three lines:
+## ID 20171207_e00787_REGLAGE07_REGLAGE07
+#data_dir = "/home/hcherkaoui/DATA/20171207_e00787_REGLAGE07_REGLAGE07/nii"
+#func_data_filename = "s004a1001_epi3p4mm_rest.nii"
+#anat_data_filename = "T1.nii"
+
+## adapt those three lines:
+## ID 20171208_e00788_REGLAGE08_REGLAGE08
+#data_dir = "/home/hcherkaoui/DATA/20171208_e00788_REGLAGE08_REGLAGE08/nii"
+#func_data_filename = "s004a1001_epi3p4mm_rest.nii"
 #anat_data_filename = "T1.nii"
