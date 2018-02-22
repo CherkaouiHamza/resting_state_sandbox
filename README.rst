@@ -25,8 +25,11 @@ Dependencies
 Configuration
 -------------
 
-Please edit the *config.py* file to specify the path to the data directory  and
-the filename of the data:
+Please edit the *config.ini* file to specify the desired subject to analyze and
+the data directory.
+
+WARNING: If you do not properly set the data directory you will not be able to
+run the analysis.
 
 Please update your .bashrc by adding
 
@@ -48,7 +51,7 @@ Launch the example:
 
 .. code-block:: bash
 
-    python resting_state.py
+    python seed_glm.py; python seed_corr.py; python ica.py
 
 You can then inspect the preprocessing report:
 
@@ -56,9 +59,4 @@ You can then inspect the preprocessing report:
 
     firefox pypreprocess_output/report_preproc.html
 
-And watch the produce Defautl Mode Network:
-
-.. code-block:: bash
-
-    eog analysis_output/
-
+To watch the produce results, please check the `analysis_output` directory:
