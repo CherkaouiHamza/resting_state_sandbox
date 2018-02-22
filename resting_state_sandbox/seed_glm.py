@@ -49,6 +49,38 @@ print("Extract high variance components...")
 n_confounds = 5
 hv_comps = high_variance_confounds(func_fname, n_confounds)
 
+# wm and csf masking
+print("Extracting the Cerebrospinal fluid (CSF)...")
+csf_filename = os.path.join("pypreprocess_output", "mwc2T1.nii.gz")
+csf_time_serie = NiftiMasker(mask_img=csf_filename).fit_transform(func_fname)
+print("Extracting the white matter (WM)...")
+wm_filename = os.path.join("pypreprocess_output", "mwc3T1.nii.gz")
+wm_time_serie = NiftiMasker(mask_img=wm_filename).fit_transform(func_fname)
+
+dirty_data = np.vstack([csf_time_serie, wm_time_serie])
+
+# make design matrix of PC components
+print("Computing the PCA out of the CSF and the WM...")
+pca = PCA(n_components=2)
+pca.fit(dirty_data)
+frametimes = np.linspace(0, (n_scans - 1) * tr, n_scans)
+print("Defining the cleaning design matrix..")
+design_matrix = make_design_matrix(frametimes, hrf_model='spm',
+                                   add_regs=pca.components_,
+                                   add_reg_names=[["csfwm_pc1", "csfwm_pc2"]])
+
+# fit a first GLM to clean the data
+print("Fitting the first GLM to clean the data...")
+cleaner = FirstLevelModel(t_r=tr, slice_time_ref=0.5, noise_model='ar1',
+                           standardize=False)
+cleaner.fit(run_imgs=fmri_img, design_matrices=design_matrix)
+dirty_fmri_img = cleaner.results_.predict(design_matrix)
+print("Clean the data...")
+fmri_img -= dirty_fmri_img
+
+#########################################################################
+# Cleaning the data
+
 # extract the seed
 print("Extracting the average seed time serie...")
 seed_masker = NiftiSpheresMasker([pcc_coords], radius=10, detrend=True,
